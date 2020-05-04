@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mck.payulater.domain.Category;
-import com.mck.payulater.services.CategoryService;
+import com.mck.payulater.domain.Bill;
+import com.mck.payulater.services.BillService;
 
 
 @RestController
-@RequestMapping(value="/categories")
-public class CategoryResource {
+@RequestMapping(value="/bills")
+public class BillResource {
 
 	@Autowired
-	private CategoryService categoryService;
+	private BillService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Category obj = categoryService.find(id);	
+		Bill obj = service.find(id);	
 		return ResponseEntity.ok().body(obj);
 	}
 }

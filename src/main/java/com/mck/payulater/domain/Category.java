@@ -1,11 +1,14 @@
 package com.mck.payulater.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category implements Serializable {
@@ -16,6 +19,11 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	
+	
+	@OneToMany(mappedBy="category")
+	private List<Bill> bills = new ArrayList<Bill>();
+	
 	public Category() {
 		super();
 	}
@@ -23,6 +31,14 @@ public class Category implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	
+	public List<Bill> getBills() {
+		return bills;
+	}
+	public void setBills(List<Bill> bills) {
+		this.bills = bills;
 	}
 	public Integer getId() {
 		return id;

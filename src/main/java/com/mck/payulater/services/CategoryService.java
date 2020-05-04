@@ -11,7 +11,7 @@ import com.mck.payulater.repositories.CategoryRepository;
 @Service
 public class CategoryService {
 	@Autowired
-	CategoryRepository repo;
+	private CategoryRepository repo;
 	
 	public Category find(Integer id) {
 		Optional<Category> obj = repo.findById(id);
