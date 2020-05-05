@@ -23,14 +23,18 @@ public class UserResource {
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		User obj = service.find(id);
-	
+//		if(obj.getFriendOf() != null) {
+//			for(int i =0; i<obj.getFriendOf().size();i++) {
+//				obj.getFriendOf().get(i).setFriendOf(null);
+//			}
+//		}
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(value="/complete/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> findComplete(@PathVariable Integer id) {
 		User obj = service.find(id);
-		List<User> friends = service.findAll();
+		List<User> friends = service.findByFriendsId(id);
 		obj.getFriends().addAll(friends);
 		return ResponseEntity.ok().body(obj);
 	}

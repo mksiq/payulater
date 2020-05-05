@@ -38,7 +38,7 @@ public class User implements Serializable{
 	// https://stackoverflow.com/questions/1656113/hibernate-recursive-many-to-many-association-with-the-same-entity
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name="FRIENDS",
+	@JoinTable(name="TBL_FRIENDS",
 		joinColumns=@JoinColumn(name="person_id"),
 		inverseJoinColumns=@JoinColumn(name="friend_id")		
 	)
@@ -132,7 +132,12 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + "\n userName=" + userName + "\n fullName=" + fullName + "\n  phoneNumber=" + phoneNumber
+				+ ", email=" + email + "]";
+	}
+	 
 	
 	
 }

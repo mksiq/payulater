@@ -13,8 +13,11 @@ import com.mck.payulater.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
-//	
-//	@Transactional(readOnly=true)
-//	@Query("SELECT obj FROM User obj INNER JOIN friends ON obj.id = friends.person_id WHERE obj.friends.friend_id = :objId")
-//	List<User> findByFriendsId(@Param("objId") Integer friend_id);
+	
+	@Transactional(readOnly=true)
+	
+	//@Query(value = "SELECT * FROM auth_user ..." , nativeQuery=true)
+//	@Query("SELECT u FROM User u INNER JOIN tbl_friends f ON User.id = f.personId WHERE f.friendId = :objId")
+	@Query(value = "SELECT * FROM User u INNER JOIN tbl_friends f ON u.id = f.person_id WHERE f.friend_id = ?1", nativeQuery=true)
+	List<User> findByFriendsId(Integer friend_id);
 }
